@@ -56,9 +56,11 @@ class User:
         user_in_db = User.get_by_email(data) #this is to check to see if email is already in database
         if user_in_db:
             flash('Email already registered')
+            is_valid = False
         if len(reqForm['password']) < 8:
             flash('Password is too short!')
-        if (reqForm['password']) != (reqForm['password_confirm']): #this is to confirm passwords are the same. password_confirm came from HTML form
+            is_valid = False
+        elif (reqForm['password']) != (reqForm['password_confirm']): #this is to confirm passwords are the same. password_confirm came from HTML form
             flash('Passwords do not match!')
             is_valid = False
         return is_valid
